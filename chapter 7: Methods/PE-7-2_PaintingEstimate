@@ -8,3 +8,37 @@ Enter width of room in feet >> 16
 Cost of job for 30 X 16 foot room is $4,968.00
 */
 
+using System;
+using static System.Console;
+using System.Globalization;
+
+class PaintingEstimate
+{
+	static void Main()
+	{
+		// Prompt a user for length and width of a room in feet.
+		WriteLine("Enter the length of the room in feet: ");
+		double length = Convert.ToDouble(ReadLine());
+
+		WriteLine("Enter the width of the room in feet: ");
+		double width = Convert.ToDouble(ReadLine());
+
+		// Return and display the price with proper currency formatting
+		double totalCost = CalculateCosts(length, width);
+		WriteLine("Cost of job for {0} X {1} foot room is {2}", 
+			length, width, totalCost.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+	}
+
+	static double CalculateCosts(double length, double width)
+	{
+		// Constants
+		const double height = 9;
+		const double costPerSQFT = 6;
+
+		// Correct wall area calculation
+		double wallArea = 2 * (length + width) * height;
+
+		// Return the total cost
+		return wallArea * costPerSQFT;
+	}
+}
