@@ -15,3 +15,45 @@ In order to do this, include the statement using System.Globalization; at the to
 WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
 */
 
+using System;
+using static System.Console;
+using System.Globalization;
+
+class FineForOverdueBooks
+{
+    static void Main()
+    {
+        // Input the number of books checked out and the number of days they are overdue.
+        WriteLine("Enter the number of overdue books >> ");
+        int numOfBooks = Convert.ToInt32(ReadLine());  // Using int for number of books
+
+        WriteLine("Enter the number of days the books are overdue >> ");
+        int daysOverdue = Convert.ToInt32(ReadLine());  // Using int for days overdue
+
+        // Call the method to display fine
+        DisplayFine(numOfBooks, daysOverdue);
+    }
+
+    // Method to calculate and display the fine
+    public static void DisplayFine(int books, int days)
+    {
+        // Constants for fines
+        const double fine1st7Days = 0.10; // Fine per book per day for the first 7 days
+        const double finePast7Days = 0.20; // Fine per book per day for each day after 7 days
+
+        double totalFine = 0;
+
+        // Calculate the fine
+        if (days <= 7)
+        {
+            totalFine = books * days * fine1st7Days;
+        }
+        else
+        {
+            totalFine = books * 7 * fine1st7Days + books * (days - 7) * finePast7Days;
+        }
+
+        // Display the fine 
+        WriteLine($"The fine for {books} book(s) for {days} day(s) is {totalFine.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+    }
+}
