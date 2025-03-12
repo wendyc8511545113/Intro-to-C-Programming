@@ -4,3 +4,28 @@ Create an application named ConvertMilesToKilometers whose Main() method prompts
 A mile is 1.60934 kilometers.
 */
 
+using System;
+using static System.Console;
+using System.Globalization;
+class ConvertMilesToKilometers
+{
+	static void Main()
+	{
+		// Prompt user for a number of miles
+		WriteLine("Enter miles amount >> ");
+		double miles = Convert.ToDouble(ReadLine());
+
+		// Convert and display miles to kilometers
+		double mToKm = ConvertToKilometers(miles);
+		WriteLine("{0} miles equals {1} kilometers.", 
+			miles, mToKm.ToString("N5", CultureInfo.InvariantCulture));
+	}
+	static double ConvertToKilometers(double miles)
+	{
+		// Constant conversion factor
+		const double kilometersPerMile = 1.60934;
+
+		// Conversion calculation
+		return miles * kilometersPerMile;
+	}
+}
