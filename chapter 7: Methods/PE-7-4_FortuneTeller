@@ -1,0 +1,45 @@
+/*
+Create a program named FortuneTeller whose Main() method contains an array of at least six strings with fortune-telling phrases such as I see a tall, dark stranger in your future. 
+The program randomly selects two different fortunes and passes them to a method that displays them.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class FortuneTeller
+{
+	static void Main()
+	{
+		// Array of 6+ strings of phrases 
+		string[] fortunes =
+		{
+			"I see a tall, dark stranger in your future.",
+            "You will encounter a great opportunity soon.",
+            "Beware of unexpected challenges in your path.",
+            "A surprise gift is headed your way.",
+            "Travel will bring you unexpected joy.",
+            "You will soon make an important decision.",
+            "An old friend will return to your life.",
+            "Happiness is on the horizon for you."
+		};
+
+		// Random selection
+		Random rand = new Random();
+
+		int firstIndex = rand.Next(fortunes.Length);
+		int secondIndex;
+		do 
+		{
+			secondIndex = rand.Next(fortunes.Length);
+		}
+		while (secondIndex == firstIndex);
+
+		DisplayFortunes(fortunes[firstIndex], fortunes[secondIndex]);
+	}
+	static void DisplayFortunes(string fortune1, string fortune2)
+	{
+		WriteLine("Your fortunes are: ");
+		WriteLine(fortune1);
+		WriteLine(fortune2);
+	}
+}
