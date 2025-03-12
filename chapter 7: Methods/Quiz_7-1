@@ -1,0 +1,59 @@
+Question 1 (1 point) 
+A declaration for a method that receives two or more arguments must list the type for each parameter separately only if the parameters have different types.
+	True
+>>	False
+
+Question 2 (1 point) 
+The type of an argument in a method call must exactly match the type of the corresponding parameter specified in the method declaration.
+	True
+>>	False
+
+Question 3 (1 point) 
+Arrays, like all objects, are passed by value.
+	True
+>>	False
+
+Question 4 (1 point) 
+What technique allows a programmer to change the way in which a method works internally without affecting programs that utilize the method?
+  overloading
+>>  implementation hiding
+  polymorphism
+  inheritance
+
+Question 5 (1 point) 
+To more easily incorporate methods into a program, it is common practice to store methods in their own classes and files. 
+Then you can add them into any application that uses them. What is the resulting compound program called?
+  a compound interface
+>>  a multifile assembly
+  a hid assembly
+  a hid implementation
+
+Question 6 (1 point) 
+What keyword modifier indicates that a method can be called by referring to the class rather than an object from the class?
+ >> static
+  internal
+  protected
+  nonstatic
+
+Question 7 (1 point) 
+What is the name for a variable that holds data passed to a method when it is called?
+  element
+>>  parameter
+  literal
+  declaration
+
+Question 8 (1 point) 
+Variables and constants that are declared within a method are only available until the end of the method. Why is this?
+>>  The method's variables exist within a scope, and are only visible within the method.
+  The variables utilize defined locality.
+  The variables are not configured for accessibility.
+  Variables do not support nesting in C#.
+
+Question 9 (1 point) 
+What statement is used to cause a value to be sent back to the calling method?
+  break
+  result
+>>  return
+  continue
+
+0 of 9 questio
