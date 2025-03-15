@@ -1,0 +1,28 @@
+/*
+Write a program named CheckCredit that prompts users to enter a purchase price for an item.
+
+If the value entered is greater than a credit limit of $8,000, display You have exceeded the credit limit; otherwise, display Approved.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class CheckCredit
+{
+	static void Main()
+	{
+		// User input of price
+		Write("Purchase Price: $");
+		string userInput = ReadLine();
+		double purchasePrice = Convert.ToDouble(userInput);
+
+		// Credit Limit amount
+		const double CREDIT_LIMIT = 8000.00;
+
+		// If-else statement of approved or denied
+		if (purchasePrice > CREDIT_LIMIT)
+			WriteLine("You have exceeded the credit limit");
+		else
+			WriteLine("Approved");
+	}
+}
