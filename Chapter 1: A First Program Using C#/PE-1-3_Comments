@@ -1,0 +1,17 @@
+/*
+Write a program named Comments that displays a statement that defines program comments. 
+Include at least one block comment, one line comment, and one WriteLine() statement in the program.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class Comments
+{
+	static void Main()
+	{
+		Console.WriteLine("Line comments use // and are only on one line."); //Line Comment Here
+		Console.WriteLine("Blocks comments start with /*, cover multiple lines, and end with */."); /*Block comments
+		can continue through multiple lines */
+	}
+}
