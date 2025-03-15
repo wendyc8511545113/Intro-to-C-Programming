@@ -1,0 +1,29 @@
+/*
+Write a program named Twitter that accepts a user’s message and determines whether it is short enough for a social networking service that does not accept messages of more than 140 characters.
+
+If the message is more than 140 characters, output The message is too long. Otherwise output The message is okay.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class Twitter
+{
+	static void Main()
+	{
+		// User inputting message
+		Write("Message: ");
+		string userInput = ReadLine();
+		int userMessage = userInput.Length;
+
+		// Maximum message length
+		const int MSG_MAX =  140;
+
+		// If-else statement of message length
+		if(userMessage > MSG_MAX)
+			Write("The message is too long.");
+		else	
+			Write("The message is okay.");
+
+	}
+}
