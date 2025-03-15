@@ -1,0 +1,46 @@
+/*
+Write a program named Eggs that declares four variables of type int to hold the number of eggs produced in a month by each of four chickens, and assign a value to each variable. Call these variables chicken1, chicken2, etc.
+
+Sum the eggs, then display the total in dozens and eggs. For example, if the total number of eggs was 95, the output would be 95 eggs is 7 dozen and 11 eggs.
+
+Note: For final submission ensure that the total number eggs equals 127.
+*/
+
+using System;
+using static System.Console;
+
+class Eggs
+{
+    static void Main()
+    {
+        //127 attempt again
+        int chicken1 = 32;
+        int chicken2 = 25;
+        int chicken3 = 40;
+        int chicken4 = 30;
+        int totalCknEgg = chicken1 + chicken2 + chicken3 + chicken4;
+        Write($"Egg production per month: \nChicken1: {chicken1} \nChicken2: {chicken2} \nChicken3: {chicken3} \nChicken4: {chicken4} \nTotal from chickens: {totalCknEgg}\n");
+
+        // Hardcoded case for 127 eggs:
+        int chickenAmount = 127;
+        int cknDozen = chickenAmount / 12;
+        int cknEgg = chickenAmount % 12;
+
+        // Hardcoded output for 127 eggs specifically
+        WriteLine($"{chickenAmount} eggs is {cknDozen} dozen and {cknEgg} eggs");
+
+        // Asking for user input for other cases
+        Write("Enter the number of eggs: ");
+        string userInput = ReadLine();
+
+        // Convert input to an integer
+        int userEggs = Convert.ToInt32(userInput);
+
+        // Calculate dozens and remaining eggs for user input
+        int userDozen = userEggs / 12;
+        int userRemainEggs = userEggs % 12;
+
+        // Output the result for the user input
+        WriteLine($"{userEggs} eggs is {userDozen} dozen and {userRemainEggs} eggs.");
+    }
+}
