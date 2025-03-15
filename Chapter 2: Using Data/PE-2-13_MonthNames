@@ -1,0 +1,34 @@
+/*
+Create an enumeration named Month that holds values for the months of the year. With JANUARY equal to 1, FEBRUARY equal to 2, and so on through DECEMBER equal to 12.
+
+Write a program named MonthNames that prompts the user for a month integer. Convert the user’s entry to a Month value, and display it.
+
+Make sure your integer prompt message does not contain any month names (January, etc.) as this will cause the tests to fail! For Example: "Enter a month number >> " does not contain month names and will work properly.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class MonthNames
+{
+	enum MonthNum
+	{
+		JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+	}
+	static void Main()
+	{
+		Write("Enter a month number:  ");
+		string userInput = ReadLine();
+		int month = Convert.ToInt32(userInput);
+		
+		if (month >= 1 && month <= 12)
+		{
+			MonthNum selectedMonth = (MonthNum)month;
+			Write($"The month number {month} is {selectedMonth}");
+		}
+		else
+		{
+			Write("Invalid input! Please enter a number between 1 and 12");
+		}
+	}
+}
