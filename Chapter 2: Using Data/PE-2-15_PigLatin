@@ -1,0 +1,31 @@
+/*
+Pig Latin is a nonsense language. To create a word in pig Latin, you remove the first letter and then add the first letter and “ay” at the end of the word. For example, “dog” becomes “ogday” and “cat” becomes “atcay.”
+
+Write a program named PigLatin that allows the user to enter a word and displays the pig Latin version.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class PigLatin
+{
+	static void Main()
+	{
+		// User input
+		Write("Enter a word >> ");
+		string userInput = ReadLine();
+
+		if (userInput.Length > 1)
+		{
+			string midWord = userInput.Substring(1);
+			char firstWord = userInput[0];
+			string piglatinWord = midWord + firstWord + "ay";
+
+			Write("Piglatin Translation: " + piglatinWord);
+		}
+		else
+		{
+			Write("Invalid");
+		}
+	}
+}
