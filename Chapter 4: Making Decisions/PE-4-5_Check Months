@@ -1,0 +1,23 @@
+/*
+Write a program named CheckMonth that prompts a user to enter a birth month.
+
+If the value entered is greater than 12 or less than 1, display the error message Invalid month; otherwise, display the valid month with a message such as 3 is a valid month.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class CheckMonth
+{
+	static void Main()
+	{
+		Write("Enter birth month number >> ");
+		string userInput = ReadLine();
+		int month = Convert.ToInt32(userInput);
+
+		if (month >= 1 && month <= 12)
+			Write($"{month} is a valid month.");
+		else
+			Write("Invalid month, type a number");
+	}
+}
