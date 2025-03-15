@@ -1,0 +1,30 @@
+/*
+Write a program named TestsInteractive that prompts a user to enter eight test scores and displays the average of the test scores to two decimal places.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class TestsInteractive
+{
+	static void Main()
+	{
+		// Test score variables
+		int score1, score2;
+		int sum;
+		double average;
+
+		//User inputs scores
+		Write("Enter test score 1 >> ");
+		score1 = Convert.ToInt32(Console.ReadLine());
+		Write("Enter test score 2 >> ");
+		score2 = Convert.ToInt32(Console.ReadLine());
+
+		//Calculate sum and average
+		sum = score1 + score2;
+		average = (double)sum / 2;
+
+		//Display results
+		Write("The average test score is:  " + average);
+	}
+}
