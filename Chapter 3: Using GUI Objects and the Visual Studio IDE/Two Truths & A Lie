@@ -1,0 +1,35 @@
+Question 1
+Two of the following statements are true, and one is false. Identify the **false** statement:
+	a. The Visual Studio IDE allows you to use a visual environment for designing Forms.	
+	b. Some key features in Visual C# include the Toolbox, Form Designer, and Solution Explorer.	
+>>	c. When you create a first Windows Forms project in any folder, Visual C# names the project MyFirstForm by default.
+
+Question 2
+Two of the following statements are true, and one is false. Identify the **false** statement:
+	a. When a user clicks a Button, the action fires a click event that causes the Button's Click() method to execute.	
+>>	b. If a Button's identifier is reportButton, then the name of its Click() method is reportButton.Click().	
+	c. You can write any statements you want between the curly braces of a Button's Click() method.
+
+Question 3
+Two of the following statements are true, and one is false. Identify the **false** statement:
+	a. A Label and a TextBox both have a Text property.	
+>>	b. When a user types a value on a Label in an executing program, it becomes the value for the Text property of the Label.	
+	c. You can display the value on a Label using a format string.	
+
+Question 4
+Two of the following statements are true, and one is false. Identify the **false** statement:
+>>	a. Label and TextBox names usually start with an uppercase letter, but Form names usually start with a lowercase letter.	
+	b. Professional programmers usually do not retain the default names for Forms and controls.	
+	c. If you rename an event method, you must refactor the code.	
+
+Question 5
+Two of the following statements are true, and one is false. Identify the **false** statement:
+	a. When a program in Visual Studio has a syntax error, you see an error dialog box that asks if you want to continue with the last successful build. You should always respond No.	
+>>	b. Program errors are harder to locate in the Visual Studio IDE than they are in applications written using a plain text editor.	
+	c. If you inadvertently create a Click() method in Visual Studio, you should not delete its code. You should select the event in the Properties window and delete it there.
+
+Question 6
+Two of the following statements are true, and one is false. Identify the **false** statement:
+>>	a. Console applications are used for declaring variables and constants and performing arithmetic, but GUI applications are not.	
+	b. GUI programs usually take longer to develop than their console counterparts because you can spend a lot of time setting up and arranging the controls.	
+	c. Console applications look dull compared to GUI applications, but they can often be developed more quickly because you do not spend much time setting up objects for a user to manipulate.
