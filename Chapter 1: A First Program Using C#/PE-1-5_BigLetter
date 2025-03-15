@@ -1,0 +1,17 @@
+/*
+Write a program named BigLetter that displays a large letter composed of smaller letters.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class BigLetter
+{
+	static void Main()
+	{
+		Console.WriteLine("W          W");
+		Console.WriteLine(" W    W   W");
+		Console.WriteLine("  W W  W W ");
+		Console.WriteLine("   W    W");
+	}
+}
