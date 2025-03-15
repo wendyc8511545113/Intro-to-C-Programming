@@ -1,0 +1,31 @@
+/*
+Write a program named MakeChange that calculates and displays the conversion of an entered number of dollars into currency denominations—twenties, tens, fives, and ones.
+
+For example, if 113 dollars is entered, the output would be twenties: 5 tens: 1 fives: 0 ones: 3.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class MakeChange
+{
+	static void Main()
+	{
+		// User input for value
+		Write("Dollar Amount: ");
+		string userInput = ReadLine();
+		int amtTotal = Convert.ToInt32(Convert.ToDouble(userInput));
+
+		//Calculate the bill amounts
+		int twentyBill = amtTotal / 20;
+		amtTotal %= 20;
+		double tenBill = amtTotal / 10;
+		amtTotal %= 10;
+		double fiveBill = amtTotal / 5;
+		amtTotal %= 5;
+		double oneBill = amtTotal / 1;
+
+		//Output results
+		WriteLine($"twenties: {twentyBill} tens: {tenBill} fives: {fiveBill} ones: {oneBill}");
+	}
+}
