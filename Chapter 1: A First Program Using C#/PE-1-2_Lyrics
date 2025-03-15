@@ -1,0 +1,18 @@
+/*
+Write, compile, and test a program named Lyrics that displays at least four lines of your favorite song.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class Lyrics
+{
+	static void Main()
+	{
+		// Write your code here
+		Console.WriteLine("But we both know,");
+		Console.WriteLine("We're never gonna get along");
+		Console.WriteLine("You want it, you got it");
+		Console.WriteLine("Here's is your freakin' song");
+	}
+}
