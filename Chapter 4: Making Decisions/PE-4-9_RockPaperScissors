@@ -1,0 +1,49 @@
+/*
+This problem relies on the generation of a random number. You can create a random number that is at least min but less than max using the following statements:
+
+Random ranNumberGenerator = new Random();
+int randomNumber;
+randomNumber = ranNumberGenerator.Next(min, max);
+In the game Rock Paper Scissors, two players simultaneously choose one of three options: rock, paper, or scissors. If both players choose the same option, then the result is a tie. However, if they choose differently, the winner is determined as follows:
+
+Rock beats scissors, because a rock can break a pair of scissors.
+Scissors beats paper, because scissors can cut paper.
+Paper beats rock, because a piece of paper can cover a rock.
+Create a game in which the computer randomly chooses rock, paper, or scissors.
+
+Let the user enter a character, r, p, or s, each representing one of the three choices. Then, determine the winner.
+*/
+
+using System;
+using static System.Console;
+
+class RockPaperScissors
+{
+    static void Main()
+    {
+        Random rand = new Random();
+        string[] choices = { "rock", "paper", "scissors" };
+        string compAnswer = choices[rand.Next(choices.Length)];
+
+        WriteLine("Let's play Rock, Paper, Scissors!");
+        Write("Choose: rock, paper, or scissors: ");
+        string userInput = ReadLine()?.ToLower();
+
+        if (userInput != "rock" && userInput != "paper" && userInput != "scissors")
+        {
+            WriteLine("Invalid choice. Try again, selecting rock, paper, or scissors.");
+            return;
+        }
+
+        WriteLine($"Computer chose: {compAnswer}");
+
+        if (userInput == compAnswer)
+            WriteLine("It's a tie!");
+        else if ((userInput == "rock" && compAnswer == "scissors") ||
+                 (userInput == "paper" && compAnswer == "rock") ||
+                 (userInput == "scissors" && compAnswer == "paper"))
+            WriteLine("You win!");
+        else
+            WriteLine("Computer wins!");
+    }
+}
