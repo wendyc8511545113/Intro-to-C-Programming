@@ -1,0 +1,37 @@
+/*
+Write an application named DisplayMultiplicationTable that displays a table of the products of every combination of two integers from 1 through 10.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class DisplayMultiplicationTable
+{
+    static void Main()
+    {
+        // Display the header row for the table
+        WriteLine("Multiplication Table:");
+        WriteLine("--------------------------------------------------");
+
+        // Display column headers
+        Write("   ");
+        for (int j = 1; j <= 10; j++)
+        {
+            Write($"{j,4}"); // Formatting each number to take up 4 spaces
+        }
+        WriteLine();
+
+        WriteLine("--------------------------------------------------");
+
+        // Display the multiplication table
+        for (int i = 1; i <= 10; i++)
+        {
+            Write($"{i,2} |"); // Row header
+            for (int j = 1; j <= 10; j++)
+            {
+                Write($"{i * j,4}"); // Display product of i and j
+            }
+            WriteLine();
+        }
+    }
+}
