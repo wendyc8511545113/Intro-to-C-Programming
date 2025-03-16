@@ -1,0 +1,42 @@
+/*
+Write a program named TestScoreList that accepts eight int values representing student test scores.
+Display each of the values along with a message that indicates how far it is from the average.
+
+An example of how the results should be output is as follows:
+Test # 0:    89 From average:     6
+Test # 1:    78 From average:    -5
+...
+*/
+
+using System;
+using static System.Console;
+
+class TestScoreList
+{
+    static void Main()
+    {
+        const int EIGHT_TESTS = 8;
+        int[] scores = new int[EIGHT_TESTS];
+        int total = 0;
+        double average;
+
+        // User input of test scores
+        for (int i = 0; i < EIGHT_TESTS; i++)
+        {
+            Write("Enter score for test # " + i + ": ");
+            scores[i] = Convert.ToInt32(ReadLine());
+            total += scores[i];
+        }
+
+        // Calculate the average
+        average = (double)total / EIGHT_TESTS;
+
+        // Display results
+        WriteLine("\nResults:");
+        for (int i = 0; i < EIGHT_TESTS; i++)
+        {
+            double difference = scores[i] - average; // Keep difference as double
+            WriteLine($"Test # {i}: {scores[i],4} From average: {difference:F3}"); // Formatting to 3 decimal places
+        }
+    }
+}
