@@ -1,0 +1,28 @@
+/*
+Write a program named CountVowels that accepts a phrase from the user and counts the number of vowels in the phrase. 
+For this exercise, count both uppercase and lowercase vowels, but do not consider y to be a vowel.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class CountVowels
+{
+	static void Main()
+	{
+		// Write your code here
+		WriteLine("Enter your phrase: ");
+		string phrase = Console.ReadLine();
+
+		int vowelCount = 0 ;
+
+		foreach (char c in phrase)
+		{
+			if ("aeiouAEIUO".Contains(c))
+			{
+				vowelCount++;
+			}
+		}
+		WriteLine($"The number of vowels in the phrase is {vowelCount}");
+	}
+}
