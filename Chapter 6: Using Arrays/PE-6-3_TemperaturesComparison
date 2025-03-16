@@ -1,0 +1,84 @@
+/*
+Write a program named TemperaturesComparison that allows a user to input five daily Fahrenheit temperatures that must range from −30 to 130.
+If a temperature is out of range, require the user to reenter it.
+If no temperature is lower than any previous one, display a message Getting warmer.
+If every temperature is lower than the previous one, display a message Getting cooler.
+If the temperatures are not entered in either ascending or descending order, display a message It’s a mixed bag.
+Finally, display the temperatures in the order they were entered, and then display the average of the temperatures.
+
+Your program's output should look like the following:
+Getting warmer:     70   74   77   78   81
+Average: 76
+*/
+
+using System;
+using static System.Console;
+
+class TemperaturesComparison
+{
+    static void Main()
+    {
+        const int NUM_TEMPS = 5;
+        const int MIN_TEMP = -30;
+        const int MAX_TEMP = 130;
+        int[] temperatures = new int[NUM_TEMPS];
+
+        WriteLine("Enter five daily Fahrenheit temperatures (between -30 and 130):");
+
+        // Input loop to ensure valid temperature range
+        for (int i = 0; i < NUM_TEMPS; i++)
+        {
+            int temp;
+            bool validInput = false;
+
+            do
+            {
+                Write($"Temperature {i + 1}: ");
+                string input = ReadLine();
+
+                if (int.TryParse(input, out temp) && temp >= MIN_TEMP && temp <= MAX_TEMP)
+                {
+                    temperatures[i] = temp;
+                    validInput = true;
+                }
+                else
+                {
+                    WriteLine($"Invalid input! Please enter a temperature between {MIN_TEMP} and {MAX_TEMP}.");
+                }
+            } while (!validInput);
+        }
+
+        // Determine trend
+        bool isGettingWarmer = true;
+        bool isGettingCooler = true;
+
+        for (int i = 1; i < NUM_TEMPS; i++)
+        {
+            if (temperatures[i] <= temperatures[i - 1])
+                isGettingWarmer = false;
+            if (temperatures[i] >= temperatures[i - 1])
+                isGettingCooler = false;
+        }
+
+        // Display trend message
+        if (isGettingWarmer)
+            WriteLine("\nGetting warmer");
+        else if (isGettingCooler)
+            WriteLine("\nGetting cooler");
+        else
+            WriteLine("\nIt’s a mixed bag");
+
+        // Display temperatures in the requested format
+        WriteLine($"Temperatures entered: {string.Join(" ", temperatures)}");
+
+        // Calculate and display average temperature
+        double average = 0;
+        foreach (int temp in temperatures)
+        {
+            average += temp;
+        }
+        average /= NUM_TEMPS;
+
+        WriteLine($"Average: {average:F1}");
+    }
+}
