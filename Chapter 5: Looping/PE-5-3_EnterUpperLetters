@@ -1,0 +1,35 @@
+/*
+Write an application named EnterUppercaseLetters that asks the user to type an uppercase letter from the keyboard. 
+If the character entered is an uppercase letter, display: OK; if it is not an uppercase letter, display the error message: Sorry - that was not an uppercase letter. . 
+The program continues until the user types an exclamation point (!).
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class EnterUppercaseLetters
+{
+	static void Main()
+	{
+		// variable information
+		char upper;
+
+		Console.WriteLine("Enter an uppercase letter >> ");
+
+		while (true)
+		{
+			Console.WriteLine("Enter an uppercase letter or ! to quit: ");
+			upper = Convert.ToChar(Console.ReadLine());
+
+			if (upper == '!')
+				break;
+			
+			if (char.IsUpper(upper))
+				Console.WriteLine("OK");
+			else 
+				Console.WriteLine("Sorry - that was not an uppercase letter.");
+		}
+
+		Console.WriteLine("You have closed the program.");
+	}
+}
