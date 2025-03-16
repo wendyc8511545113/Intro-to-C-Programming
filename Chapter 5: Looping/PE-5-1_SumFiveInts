@@ -1,0 +1,26 @@
+/*
+Write an application named SumFiveInts that allows the user to enter five integers and displays their sum.
+*/
+
+using System;
+using static System.Console;
+
+class SumFiveInts
+{
+    static void Main()
+    {
+        // Stores sum
+        int sum = 0;
+
+        // For loop that runs 5 times for integers
+        for (int i = 1; i <= 5; i++)
+        {
+            Write($"Enter integer {i}: ");
+            int number = Convert.ToInt32(ReadLine()); // Corrected method name
+            sum += number;
+        }
+
+        // Display sum of user input of integers
+        WriteLine($"The sum of the numbers is: {sum}");
+    }
+}
