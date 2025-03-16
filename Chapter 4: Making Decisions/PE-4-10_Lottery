@@ -25,3 +25,62 @@ The winning combination was 314
 You won $100
 */
 
+using System;
+using static System.Console;
+
+class Lottery
+{
+    static void Main()
+    {
+        Random ranNumGenerator = new Random();
+
+        // Generate three random numbers between 1 and 4
+        int randomNum1 = ranNumGenerator.Next(1, 5);
+        int randomNum2 = ranNumGenerator.Next(1, 5);
+        int randomNum3 = ranNumGenerator.Next(1, 5);
+
+        // Get the user's guesses
+        WriteLine("Enter a digit from 1 to 4 >> ");
+        string guess1 = ReadLine();
+
+        WriteLine("Enter a second digit from 1 to 4 >> ");
+        string guess2 = ReadLine();
+
+        WriteLine("And finally, enter a third digit from 1 to 4 >> ");
+        string guess3 = ReadLine();
+
+        // Convert guesses to integers
+        int userGuess1 = Convert.ToInt32(guess1);
+        int userGuess2 = Convert.ToInt32(guess2);
+        int userGuess3 = Convert.ToInt32(guess3);
+
+        // Display the winning combination
+        WriteLine($"The winning combination was {randomNum1}{randomNum2}{randomNum3}");
+
+        // Count how many numbers match
+        int matchCount = 0;
+
+        // Matching logic for the first digit
+        if (userGuess1 == randomNum1) matchCount++;
+        if (userGuess2 == randomNum2) matchCount++;
+        if (userGuess3 == randomNum3) matchCount++;
+
+        // Determine the prize based on the matching logic
+        if (userGuess1 == randomNum1 && userGuess2 == randomNum2 && userGuess3 == randomNum3)
+        {
+            // Three numbers match exactly in order
+            WriteLine("You won $10,000");
+        }
+        else if (userGuess1 == randomNum1 || userGuess2 == randomNum2 || userGuess3 == randomNum3)
+        {
+            // At least one match
+            WriteLine("You won $10");
+        }
+        else if (userGuess1 == randomNum1 && userGuess2 == randomNum2 || 
+                 userGuess2 == randomNum2 && userGuess3 == randomNum3 || 
+                 userGuess1 == randomNum3 && userGuess2 == randomNum1) 
+        {
+            WriteLine("You won $100");
+        }
+    }
+}
