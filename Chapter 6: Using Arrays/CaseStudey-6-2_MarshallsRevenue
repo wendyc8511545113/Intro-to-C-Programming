@@ -1,0 +1,234 @@
+/*
+In previous chapters, you created applications for Marshall’s Murals.
+Now, modify the version of the MarshallsRevenue program created in Chapter 5 so that after mural data entry is complete, 
+the user is prompted for the appropriate number of customer names for both the interior and exterior murals and a code for each that indicates the mural style:
+L for landscape
+S for seascape
+A for abstract
+C for children’s
+O for other
+When a code is invalid, re-prompt the user for a valid code continuously. 
+For example, if Y is input, output Y is not a valid code, and re-prompt the user until a valid code is entered.
+After data entry is complete, display a count of each type of mural. 
+For example the output should be in the following format with the correct number next to each mural type:
+The interior murals scheduled are:
+Landscape                 1
+Seascape                  2
+Abstract                  1
+Children's                3
+Other                     9
+The exterior murals scheduled are:
+Landscape                 4
+Seascape                  0
+Abstract                  2
+Children's                4
+Other                     0
+Then, continuously prompt the user for a mural style code until the user enters a sentinel value (the uppercase character Z should be used as the sentinel value).
+With each code entry, display a list of all the customers with that code and whether their mural is interior or exterior. If the requested code is invalid, display an appropriate message and re-prompt the user. For example if L is input, the output might be:
+Customers ordering Landscape murals are:
+Katie Interior
+Jake Exterior
+If U is entered, the output should be U is not a valid code.
+In order to prepend the $ to currency values, the program will need to use the CultureInfo.GetCultureInfo method. In order to do this, include the statement using System.Globalization; at the top of your program and format the output statements as follows: 
+WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+*/
+
+using System;
+using System.Collections.Generic;
+
+class MarshallsRevenue
+{
+    static void Main()
+    {
+        // Define lists to store customer names and their corresponding mural styles
+        List<string> interiorLandscape = new List<string>();
+        List<string> interiorSeascape = new List<string>();
+        List<string> interiorAbstract = new List<string>();
+        List<string> interiorChildrens = new List<string>();
+        List<string> interiorOther = new List<string>();
+
+        List<string> exteriorLandscape = new List<string>();
+        List<string> exteriorSeascape = new List<string>();
+        List<string> exteriorAbstract = new List<string>();
+        List<string> exteriorChildrens = new List<string>();
+        List<string> exteriorOther = new List<string>();
+
+        // Number of interior murals
+        int numberOfInterior;
+        Console.Write("Enter the number of interior murals: ");
+        while (!int.TryParse(Console.ReadLine(), out numberOfInterior) || numberOfInterior <= 0)
+        {
+            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            Console.Write("Enter the number of interior murals: ");
+        }
+
+        // Enter interior customer data
+        for (int i = 0; i < numberOfInterior; i++)
+        {
+            Console.Write($"Enter the name of interior mural customer {i + 1}: ");
+            string customerName = Console.ReadLine();
+
+            // Continuously prompt for a valid mural style code for interior murals
+            char muralStyle;
+            bool validCode = false;
+            while (!validCode)
+            {
+                Console.Write("Enter the mural style code for interior mural (L = Landscape, S = Seascape, A = Abstract, C = Children's, O = Other): ");
+                muralStyle = char.ToUpper(Console.ReadLine()[0]);
+
+                switch (muralStyle)
+                {
+                    case 'L':
+                        interiorLandscape.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'S':
+                        interiorSeascape.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'A':
+                        interiorAbstract.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'C':
+                        interiorChildrens.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'O':
+                        interiorOther.Add(customerName);
+                        validCode = true;
+                        break;
+                    default:
+                        Console.WriteLine($"{muralStyle} is not a valid code. Please enter a valid code.");
+                        break;
+                }
+            }
+        }
+
+        // Number of exterior murals
+        int numberOfExterior;
+        Console.Write("Enter the number of exterior murals: ");
+        while (!int.TryParse(Console.ReadLine(), out numberOfExterior) || numberOfExterior <= 0)
+        {
+            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            Console.Write("Enter the number of exterior murals: ");
+        }
+
+        // Enter exterior customer data
+        for (int i = 0; i < numberOfExterior; i++)
+        {
+            Console.Write($"Enter the name of exterior mural customer {i + 1}: ");
+            string customerName = Console.ReadLine();
+
+            // Continuously prompt for a valid mural style code for exterior murals
+            char muralStyle;
+            bool validCode = false;
+            while (!validCode)
+            {
+                Console.Write("Enter the mural style code for exterior mural (L = Landscape, S = Seascape, A = Abstract, C = Children's, O = Other): ");
+                muralStyle = char.ToUpper(Console.ReadLine()[0]);
+
+                switch (muralStyle)
+                {
+                    case 'L':
+                        exteriorLandscape.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'S':
+                        exteriorSeascape.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'A':
+                        exteriorAbstract.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'C':
+                        exteriorChildrens.Add(customerName);
+                        validCode = true;
+                        break;
+                    case 'O':
+                        exteriorOther.Add(customerName);
+                        validCode = true;
+                        break;
+                    default:
+                        Console.WriteLine($"{muralStyle} is not a valid code. Please enter a valid code.");
+                        break;
+                }
+            }
+        }
+
+        // Display counts for interior murals
+        Console.WriteLine("\nThe interior murals scheduled are:");
+        Console.WriteLine($"Landscape                 {interiorLandscape.Count}");
+        Console.WriteLine($"Seascape                  {interiorSeascape.Count}");
+        Console.WriteLine($"Abstract                  {interiorAbstract.Count}");
+        Console.WriteLine($"Children's                {interiorChildrens.Count}");
+        Console.WriteLine($"Other                     {interiorOther.Count}");
+
+        // Display counts for exterior murals
+        Console.WriteLine("\nThe exterior murals scheduled are:");
+        Console.WriteLine($"Landscape                 {exteriorLandscape.Count}");
+        Console.WriteLine($"Seascape                  {exteriorSeascape.Count}");
+        Console.WriteLine($"Abstract                  {exteriorAbstract.Count}");
+        Console.WriteLine($"Children's                {exteriorChildrens.Count}");
+        Console.WriteLine($"Other                     {exteriorOther.Count}");
+
+        // Continuously prompt the user for a mural style code to list customers
+        while (true)
+        {
+            Console.Write("\nEnter a mural style code (L, S, A, C, O) to list customers or Z to quit: ");
+            char code = char.ToUpper(Console.ReadLine()[0]);
+
+            if (code == 'Z')
+                break;
+
+            switch (code)
+            {
+                case 'L':
+                    Console.WriteLine("Customers ordering Landscape murals are:");
+                    DisplayCustomers(interiorLandscape, "Interior");
+                    DisplayCustomers(exteriorLandscape, "Exterior");
+                    break;
+                case 'S':
+                    Console.WriteLine("Customers ordering Seascape murals are:");
+                    DisplayCustomers(interiorSeascape, "Interior");
+                    DisplayCustomers(exteriorSeascape, "Exterior");
+                    break;
+                case 'A':
+                    Console.WriteLine("Customers ordering Abstract murals are:");
+                    DisplayCustomers(interiorAbstract, "Interior");
+                    DisplayCustomers(exteriorAbstract, "Exterior");
+                    break;
+                case 'C':
+                    Console.WriteLine("Customers ordering Children's murals are:");
+                    DisplayCustomers(interiorChildrens, "Interior");
+                    DisplayCustomers(exteriorChildrens, "Exterior");
+                    break;
+                case 'O':
+                    Console.WriteLine("Customers ordering Other murals are:");
+                    DisplayCustomers(interiorOther, "Interior");
+                    DisplayCustomers(exteriorOther, "Exterior");
+                    break;
+                default:
+                    Console.WriteLine($"{code} is not a valid code.");
+                    break;
+            }
+        }
+    }
+
+    // Helper method to display the list of customers for a particular mural type
+    static void DisplayCustomers(List<string> customers, string muralType)
+    {
+        if (customers.Count == 0)
+        {
+            Console.WriteLine($"No customers found for {muralType}.");
+        }
+        else
+        {
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"{customer} {muralType}");
+            }
+        }
+    }
+}
