@@ -1,0 +1,106 @@
+/*
+This problem relies on the generation of a random number. 
+You can create a random number that is at least min but less than max using the following statements:
+Random ranNumberGenerator = new Random();
+int randomNumber;
+randomNumber = ranNumberGenerator.Next(min, max);
+
+Create a game similar to Hangman named GuessAWord in which a player guesses letters to try to replicate a hidden word. 
+Store at least eight words in an array, and randomly select one to be the hidden word.
+Initially, display the hidden word using asterisks to represent each letter. 
+Allow the user to guess letters to replace the asterisks in the hidden word until the user completes the entire word.
+If the user guesses a letter that is not in the hidden word, display an appropriate message.
+If the user guesses a letter that appears multiple times in the hidden word, make sure that each correct letter is placed.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class GuessAWord
+{
+    static void Main()
+    {
+        // List of words to choose from
+        string[] words = { "programming", "computer", "developer", "software", "application", "algorithm", "debugging", "interface" };
+        
+        // Create a random number generator
+        Random ranNumberGenerator = new Random();
+        
+        // Select a random word from the array
+        int randomIndex = ranNumberGenerator.Next(0, words.Length);
+        string hiddenWord = words[randomIndex];
+        
+        // Create a string to store the guessed word (initialized to asterisks)
+        char[] guessedWord = new char[hiddenWord.Length];
+        for (int i = 0; i < hiddenWord.Length; i++)
+        {
+            guessedWord[i] = '*';  // Replace with asterisk initially
+        }
+
+        int attempts = 0;
+        bool wordGuessed = false;
+
+        // Start the game loop
+        Console.WriteLine("Welcome to Guess A Word!");
+        Console.WriteLine("The word has " + hiddenWord.Length + " letters.");
+        Console.WriteLine(new string('*', hiddenWord.Length)); // Show the initial word as asterisks
+
+        while (!wordGuessed)
+        {
+            // Prompt user for a guess
+            Console.Write("\nGuess a letter: ");
+            string userInput = Console.ReadLine();
+
+            // Ensure the user entered only one letter
+            if (userInput.Length == 1 && Char.IsLetter(userInput[0]))
+            {
+                char guessedLetter = Char.ToLower(userInput[0]);  // Convert to lowercase to be case-insensitive
+
+                // Check if the guessed letter is in the hidden word
+                bool letterFound = false;
+
+                for (int i = 0; i < hiddenWord.Length; i++)
+                {
+                    if (Char.ToLower(hiddenWord[i]) == guessedLetter) // Case-insensitive comparison
+                    {
+                        guessedWord[i] = hiddenWord[i];  // Reveal the letter in the guessedWord array
+                        letterFound = true;
+                    }
+                }
+
+                if (letterFound)
+                {
+                    Console.WriteLine("Correct! Keep going.");
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect guess. Try again.");
+                }
+
+                // Show the current progress of the word
+                Console.WriteLine("Current word: " + new string(guessedWord));
+
+                // Check if the word is fully guessed
+                wordGuessed = true;
+                foreach (char c in guessedWord)
+                {
+                    if (c == '*')
+                    {
+                        wordGuessed = false;
+                        break;
+                    }
+                }
+
+                attempts++;
+            }
+            else
+            {
+                Console.WriteLine("Please enter only a single letter.");
+            }
+        }
+
+        // Game over - user guessed the word
+        Console.WriteLine("\nCongratulations! You've guessed the word: " + hiddenWord);
+        Console.WriteLine("It took you " + attempts + " attempts.");
+    }
+}
