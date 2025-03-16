@@ -1,0 +1,47 @@
+/*
+Write a program named CheckMonth2 that prompts a user to enter a birth month and day.
+Display an error message that says Invalid date if the month is invalid (not 1 through 12) or the day is invalid for the month (for example, not between 1 and 31 for January or between 1 and 29 for February).
+If the month and day are valid, display them with a message. For example, if the month entered is 2, and the day entered is 17, the output should be 2/17 is a valid birthday.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class CheckMonth2
+{
+	static void Main()
+	{
+		Write("Enter your birth month (1-12): ");
+		int month = Convert.ToInt32(ReadLine());
+
+		Write("Enter your birth day: ");
+		int day = Convert.ToInt32(ReadLine());
+
+		int maxDays;
+
+		switch (month)
+		{
+			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+				maxDays = 31;
+				break;
+			case 4: case 6: case 9: case 11:
+				maxDays = 30;
+				break;
+			case 2:
+				maxDays = 29;
+				break;
+			default:
+				maxDays = 0;
+				break;
+		}
+
+		if (maxDays == 0 || day < 1 || day > maxDays)
+		{
+			Write("Invalid date");
+		}
+		else
+		{
+			Write($"{month}/{day} is a valid birthday.");
+		}
+	}
+}
