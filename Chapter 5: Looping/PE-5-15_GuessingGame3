@@ -1,0 +1,81 @@
+/*
+Modify the GuessingGame2 program to create a program called GuessingGame3 in which the player is criticized for making a “dumb” guess. 
+For example, if the player guesses that the random number is 4 and is told that the guess is too low, and then the player subsequently makes a guess lower than 4, 
+display a message that the user should have known not to make such a low guess.
+
+An example of the program is shown below:
+Guess a number between 1 and 11 >> 3
+Your guess was too low
+Guess again >> 2
+You already knew it was not 3 or less
+Your guess was too low
+Guess again >> 5
+Your guess was too low
+Guess again >> 9
+Your guess was correct!
+You got it in 4 guesses
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class GuessingGame3
+{
+    static void Main()
+    {
+        // Generate a random number between 1 and 11 (inclusive)
+        Random ranNumber = new Random();
+        int randomNumber = ranNumber.Next(1, 12);  // Random number between 1 and 11
+        int userGuess = 0;  // Variable to store the user's guess
+        int guessCount = 0;  // Variable to count the number of guesses
+        int lastGuess = -1;  // Variable to store the previous guess
+
+        WriteLine("Guess a number between 1 and 11 >>");
+
+        // Loop until the user guesses correctly
+        while (userGuess != randomNumber)
+        {
+            Write("Guess: ");
+            string userInput = ReadLine();
+
+            // Validate input
+            if (int.TryParse(userInput, out userGuess))
+            {
+                guessCount++;  // Increment the guess count
+
+                // Provide feedback based on the guess
+                if (userGuess < randomNumber)
+                {
+                    // Check if the new guess is lower than the previous guess
+                    if (lastGuess != -1 && userGuess <= lastGuess)
+                    {
+                        WriteLine("You already knew it was not {0} or less", lastGuess);
+                    }
+                    WriteLine("Your guess was too low");
+                }
+                else if (userGuess > randomNumber)
+                {
+                    // Check if the new guess is higher than the previous guess
+                    if (lastGuess != -1 && userGuess >= lastGuess)
+                    {
+                        WriteLine("You already knew it was not {0} or greater", lastGuess);
+                    }
+                    WriteLine("Your guess was too high");
+                }
+                else
+                {
+                    WriteLine($"Your guess was correct!");
+                    WriteLine($"You got it in {guessCount} guesses");
+                    break;
+                }
+
+                // Update lastGuess for next iteration
+                lastGuess = userGuess;
+            }
+            else
+            {
+                WriteLine("Invalid input! Please enter a valid number.");
+            }
+        }
+    }
+}
