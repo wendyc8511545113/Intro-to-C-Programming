@@ -1,0 +1,31 @@
+/*
+Write an application named SumInts that allows the user to enter any number of integers continuously until the user enters 999. Display the sum of the values entered, not including 999.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class SumInts
+{
+	static void Main()
+	{
+		// Stores sum & user inputs
+		int sum = 0;
+		int number;
+
+		Console.WriteLine("Enter numbers (Enter 999 to stop)>> ");
+
+		while (true)
+		{
+			Console.Write("Enter a number: ");
+			number = Convert.ToInt32(Console.ReadLine());
+
+			if(number == 999)
+				break;
+
+			sum += number;
+		}
+
+		Console.WriteLine($"The sum of the numbers is {sum}");
+	}
+}
