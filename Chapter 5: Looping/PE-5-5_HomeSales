@@ -1,0 +1,100 @@
+/*
+Danielle, Edward, and Francis are three salespeople at Holiday Homes. Write an application named HomeSales that prompts the user for a salesperson initial (D, E, or F) input as a string. 
+Either uppercase or lowercase initials are valid. While the user does not type Z, continue by prompting for the amount of a sale. 
+Issue the error message "Sorry - invalid salesperson" for any invalid initials entered. 
+Keep a running total of the amounts sold by each salesperson. 
+After the user types Z or z for an initial, display each salesperson’s total, a grand total for all sales, and the name of the salesperson with the highest total unless there is a tie. 
+If there is a tie, indicate this in the program's output with the message: "There was a tie".
+
+An example of the program is shown below:
+
+Enter a salesperson initial >> D
+Enter amount of sale >> 10
+Enter next salesperson intital or Z to quit >> d
+Enter amount of sale >> 2
+Enter next salesperson intital or Z to quit >> E
+Enter amount of sale >> 15
+Enter next salesperson intital or Z to quit >> f
+Enter amount of sale >> 9
+Enter next salesperson intital or Z to quit >> Z
+Danielle sold        $12.00
+Edward sold          $15.00
+Francis sold          $9.00
+Total sales were     $36.00
+Edward sold the most
+In order to prepend the $ to currency values, the program will need to use the CultureInfo.GetCultureInfo method. 
+In order to do this, include the statement using System.Globalization; at the top of your program and format the output statements as follows: 
+WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+
+class HomeSales
+{
+    static void Main()
+    {
+        double totalD = 0, totalE = 0, totalF = 0;
+        string input;
+
+        // Loop for entering sales data until user quits with 'Z' or 'z'
+        while (true)
+        {
+            WriteLine("Enter salesperson initial or Z to quit >> ");
+            input = ReadLine().Trim().ToUpper(); // Handles both uppercase and lowercase input
+
+            if (input == "Z") // Quit condition
+                break;
+
+            // Validate salesperson initial
+            if (input != "D" && input != "E" && input != "F")
+            {
+                WriteLine("Sorry - invalid salesperson");
+                continue;
+            }
+
+            WriteLine("Enter sale amount >> ");
+            if (double.TryParse(ReadLine(), out double saleAmount) && saleAmount >= 0)
+            {
+                // Add the sale amount to the corresponding salesperson's total
+                switch (input)
+                {
+                    case "D":
+                        totalD += saleAmount;
+                        break;
+                    case "E":
+                        totalE += saleAmount;
+                        break;
+                    case "F":
+                        totalF += saleAmount;
+                        break;
+                }
+            }
+            else
+            {
+                WriteLine("Invalid sale amount. Please enter a valid number");
+            }
+        }
+
+        // Calculate the grand total
+        double grandTotal = totalD + totalE + totalF;
+
+        // Display sales summary
+        WriteLine("\nSales Summary:");
+        WriteLine($"Danielle's Total Sales: {totalD.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        WriteLine($"Edward's Total Sales: {totalE.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        WriteLine($"Francis's Total Sales: {totalF.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        WriteLine($"Total sales were: {grandTotal.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+
+        // Determine the top salesperson, considering ties
+        if (totalD > totalE && totalD > totalF)
+            WriteLine("Danielle sold the most");
+        else if (totalE > totalD && totalE > totalF)
+            WriteLine("Edward sold the most");
+        else if (totalF > totalD && totalF > totalE)
+            WriteLine("Francis sold the most");
+        else
+            WriteLine("There was a tie"); // If two or more have the highest total
+    }
+}
