@@ -1,0 +1,55 @@
+/*
+Write a program for The Carefree Resort named ResortPrices that prompts the user to enter the number of days for a resort stay. 
+Then display the price per night and the total price. Nightly rates are:
+$200 for one or two nights
+$180 for three or four nights
+$160 for five, six, or seven nights
+$145 for eight nights or more
+For example, if the input is 1, the output should be:
+Price per night is $200.00
+Total for 1 night(s) is $200.00
+
+In order to prepend the $ to currency values, the program will need to use the CultureInfo.GetCultureInfo method. 
+In order to do this, include the statement using System.Globalization; at the top of your program and format the output statements as follows: 
+WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class ResortPrices
+{
+	 static void Main()
+    {
+        // Prompt the user for the number of days
+        Write("Enter the number of days for your resort stay: ");
+        string input = ReadLine();
+
+        if (int.TryParse(input, out int numDays) && numDays > 0)
+        {
+            // Declare the price per night
+            double pricePerNight = 0;
+
+            // Determine the price per night based on the number of days
+            if (numDays == 1 || numDays == 2)
+                pricePerNight = 200.00;
+            else if (numDays == 3 || numDays == 4)
+                pricePerNight = 180.00;
+            else if (numDays >= 5 && numDays <= 7)
+                pricePerNight = 160.00;
+            else if (numDays >= 8)
+                pricePerNight = 145.00;
+
+            // Calculate the total price
+            double totalPrice = pricePerNight * numDays;
+
+            // Display the price per night and the total price
+            WriteLine($"Price per night is {pricePerNight.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+            WriteLine($"Total for {numDays} night(s) is {totalPrice.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        }
+        else
+        {
+            WriteLine("Please enter a valid number of days.");
+        }
+    }
+}
