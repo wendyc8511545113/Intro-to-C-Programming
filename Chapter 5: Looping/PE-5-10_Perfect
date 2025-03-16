@@ -1,0 +1,31 @@
+/*
+Write an application named Perfect that displays every perfect number from 1 through 10,000. 
+A number is perfect if it equals the sum of all the smaller positive integers that divide evenly into it. 
+For example, 6 is perfect because 1, 2, and 3 divide evenly into it and their sum is 6.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class Perfect
+{
+	static void Main()
+	{
+		for (int num = 1; num <= 10000; num++)
+		{
+			int sum = 0;
+
+			for (int i = 1; i <= num / 2; i++)
+			{
+				if (num % i == 0)
+				{
+					sum += i;
+				}
+			}
+			if (sum == num)
+			{
+				WriteLine(num);
+			}
+		}
+	}
+}
