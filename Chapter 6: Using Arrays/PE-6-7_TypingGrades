@@ -1,0 +1,45 @@
+/*
+The Nimble Fingers Typing School assigns grades based on words typed per minute, as shown in Figure 6-26 (below).
+Write a program named TypingGrades that allows a user to enter a student’s number of words typed. The output is the letter grade.
+For example, if 8 words typed is input, the output should be Typing 8 words per minute: Grade F.
+Words typed	Grade
+0–15	F
+16–30	D
+31–50	C
+51–75	B
+76 and over	A
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class TypingGrades
+{
+    static void Main()
+    {
+        Write("Enter the number of words typed per minute: ");
+        string input = ReadLine();
+
+        if (int.TryParse(input, out int wordsPerMinute) && wordsPerMinute >= 0)
+        {
+            char grade;
+
+            if (wordsPerMinute <= 15)
+                grade = 'F';
+            else if (wordsPerMinute <= 30)
+                grade = 'D';
+            else if (wordsPerMinute <= 50)
+                grade = 'C';
+            else if (wordsPerMinute <= 75)
+                grade = 'B';
+            else
+                grade = 'A';
+
+            WriteLine($"Typing {wordsPerMinute} words per minute: Grade {grade}");
+        }
+        else
+        {
+            WriteLine("Invalid input. Please enter a non-negative number.");
+        }
+    }
+}
