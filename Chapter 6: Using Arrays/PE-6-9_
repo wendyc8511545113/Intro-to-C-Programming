@@ -1,0 +1,55 @@
+/*
+In Chapter 5, you wrote a HomeSales application for three salespeople: Danielle, Edward, and Francis.
+
+Now, using the code you wrote in Chapter 5, Programming Exercise 5, modify the program to use arrays to store the salesperson names, allowed initials, and accumulated sales values.
+
+In order to prepend the $ to currency values, the program will need to use the CultureInfo.GetCultureInfo method. In order to do this, include the statement using System.Globalization; at the top of your program and format the output statements as follows: 
+WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+
+class HomeSales
+{
+    static void Main()
+    {
+        // Arrays to store salespeople names, initials (as char), and sales values
+        string[] names = { "Danielle", "Edward", "Francis" };
+        char[] initials = { 'D', 'E', 'F' };  // Using char array for initials
+        double[] sales = new double[3];  // Array to store accumulated sales values
+
+        // Variable for tracking the total sales
+        double totalSales = 0;
+
+        // Input and process sales for each salesperson
+        for (int i = 0; i < names.Length; i++)
+        {
+            // Prompt user to enter sales for the current salesperson
+            WriteLine($"Enter the sales amount for {names[i]} ({initials[i]}): ");
+            string input = ReadLine();
+            if (double.TryParse(input, out double salesAmount) && salesAmount >= 0)
+            {
+                sales[i] = salesAmount; // Store the sales amount
+                totalSales += salesAmount; // Add to the total sales
+            }
+            else
+            {
+                WriteLine("Invalid input. Please enter a valid sales amount.");
+                i--; // Decrement index to retry for this salesperson
+            }
+        }
+
+        // Output the sales for each person and the total sales
+        WriteLine("\nSales Report:");
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            WriteLine($"{names[i]} ({initials[i]}): {sales[i].ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        }
+
+        // Output the total sales
+        WriteLine($"\nTotal Sales: {totalSales.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+    }
+}
