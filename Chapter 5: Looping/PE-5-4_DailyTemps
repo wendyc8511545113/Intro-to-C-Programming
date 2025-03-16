@@ -1,0 +1,61 @@
+/*
+Write an application named DailyTemps that continuously prompts a user for a series of daily high temperatures until the user enters a sentinel value of 999. 
+Valid temperatures range from -20 through 130 Fahrenheit. When the user enters a valid temperature, add it to a total; when the user enters an invalid temperature, display the error message:
+
+Valid temperatures range from -20 to 130. Please reenter temperature.
+Before the program ends, display the number of temperatures entered and the average temperature.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class DailyTemps
+{
+	static void Main()
+	{
+		// Variables using
+		int temperature;
+		int totalTemp = 0;
+		int count = 0;
+
+		WriteLine("Enter daily high temperatures (Enter 999 to quit)");
+
+		while (true)
+		{
+			WriteLine("Enter a temperature: ");
+			string input = ReadLine();
+
+			if (!int.TryParse(input, out temperature))
+			{
+				WriteLine("Invalid input. Enter a number.");
+				continue;
+			}
+
+			if (temperature == 999)
+				break;
+
+			if (temperature >= -20 && temperature<= 130)
+			{
+				totalTemp += temperature;
+				count++;
+			}
+			else
+			{
+				WriteLine("Valid temperatures range from -20 to 130. Please reenter temperature.");
+			}
+
+			if (count > 0)
+			{
+				double average = (double)totalTemp / count;
+				WriteLine($"Total valid temperatures entered: {count}");
+				WriteLine($"Average temperature: {average:F2}");
+			}
+			else
+			{
+				WriteLine("No valid temperatures were entered");
+			}
+
+			WriteLine("Program has ended");
+		} 
+	}
+}
