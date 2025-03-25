@@ -1,0 +1,43 @@
+/*
+Create an application named TestSoccerPlayer that instantiates and displays a SoccerPlayer object. The SoccerPlayer class contains the following properties:
+
+Name - The player’s name ( a string)
+JerseyNum - The player's jersey number (an integer)
+Goals - Number of goals scored (an integer)
+Assists - Number of assists (an integer)
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+
+// SoccerPlayer class
+class SoccerPlayer
+{
+    public string name;
+    public int jerseyNum;
+    public int goals;
+    public int assists;
+
+    public SoccerPlayer(string argName, int argJerseyNum, int argGoals, int argAssists)
+    {
+        name = argName;
+        jerseyNum = argJerseyNum;
+        goals = argGoals;
+        assists = argAssists;
+
+        Console.WriteLine("Storing data for " + name + "\n");
+    }
+}
+
+class TestSoccerPlayer
+{
+	static void Main()
+	{
+		SoccerPlayer player1 = new SoccerPlayer("Lionel Messi", 10, 30, 20);
+
+        Console.WriteLine(player1.name + " wears jersey number " + player1.jerseyNum + " with " + player1.goals + " goals and assists of " + player1.assists);
+        Console.ReadLine();
+    }
+}
+
