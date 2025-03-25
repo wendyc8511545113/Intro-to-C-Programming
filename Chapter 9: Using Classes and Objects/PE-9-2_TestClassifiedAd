@@ -1,0 +1,58 @@
+/*
+Create an application named TestClassifiedAd that instantiates and displays at least two ClassifiedAd objects. 
+A ClassifiedAd has fields for a Category (For example, Used Cars and Help Wanted), a number of Words, and a price. 
+Include properties that contain get and set accessors for the category and number of words, but only a get accessor for the price. The price is calculated at nine cents per word.
+
+Note: Your output should be formatted as: The classified ad with 100 words in category Used Cars costs $9.00
+The classified ad with 60 words in category Help Wanted costs $5.40
+
+In order to prepend the $ to currency values, the program will need to use the CultureInfo.GetCultureInfo method. 
+In order to do this, include the statement using System.Globalization; at the top of your program and format the output statements as follows: 
+WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+*/
+
+using System;
+using System.Globalization;
+
+// Define the ClassifiedAd class
+public class ClassifiedAd
+{
+    private const decimal PricePerWord = 0.09m;
+
+    public string Category { get; set; }
+    public int NumberOfWords { get; set; }
+    
+    // Price is calculated based on the number of words
+    public decimal Price
+    {
+        get { return NumberOfWords * PricePerWord; }
+    }
+
+    // Constructor to initialize the properties
+    public ClassifiedAd(string category, int numberOfWords)
+    {
+        Category = category;
+        NumberOfWords = numberOfWords;
+    }
+
+    // Method to display ad details
+    public void DisplayAd()
+    {
+        Console.WriteLine("The classified ad with {0} words in category {1} costs {2}", 
+            NumberOfWords, Category, Price.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+    }
+}
+
+// Main program to test the ClassifiedAd class
+public class TestClassifiedAd
+{
+    public static void Main()
+    {
+        // Instantiate and display multiple ClassifiedAd objects
+        ClassifiedAd ad1 = new ClassifiedAd("Used Cars", 100);
+        ClassifiedAd ad2 = new ClassifiedAd("Help Wanted", 60);
+        
+        ad1.DisplayAd();
+        ad2.DisplayAd();
+    }
+}
