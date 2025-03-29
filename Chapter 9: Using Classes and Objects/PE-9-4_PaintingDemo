@@ -14,3 +14,68 @@ A room requires one gallon of paint for every 350 square feet (plus an extra gal
 In other words, a 12 x 3 x 10 room with 9-foot ceilings has 396 square feet of wall space, and so requires two gallons of paint.
 */
 
+using System;
+using static System.Console;
+using System.Globalization;
+
+class Room
+{
+    // Fields
+    private int length;
+    private int width;
+    private int height;
+    private int area;
+    private int gallons;
+
+    // Properties
+    public int Area { get { return area; } }
+    public int Gallons { get { return gallons; } }
+
+    // Constructor
+    public Room(int length, int width, int height)
+    {
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        CalculateArea();
+        CalculateGallons();
+    }
+
+    // Private method to calculate wall area
+    private void CalculateArea()
+    {
+        area = 2 * (length * height + width * height);
+    }
+
+    // Private method to calculate gallons needed
+    private void CalculateGallons()
+    {
+        gallons = (area / 350) + (area % 350 > 0 ? 1 : 0);
+    }
+}
+
+class PaintingDemo
+{
+    static void Main()
+    {
+        // Create an array of 8 Room objects with different dimensions
+        Room[] rooms = new Room[]
+        {
+            new Room(12, 10, 9),
+            new Room(15, 12, 8),
+            new Room(10, 10, 10),
+            new Room(20, 15, 10),
+            new Room(8, 8, 8),
+            new Room(14, 10, 9),
+            new Room(18, 12, 9),
+            new Room(10, 15, 9)
+        };
+
+        // Display the results
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            WriteLine("Room {0}: Area = {1} sq ft, Gallons Needed = {2}",
+                i + 1, rooms[i].Area, rooms[i].Gallons);
+        }
+    }
+}
