@@ -1,0 +1,61 @@
+/*
+Create an application named CarDemo that declares at least two Car objects and demonstrates how they can be incremented using an overloaded ++ operator.
+Create a Car class that contains the following properties:
+Model - The car model (as a string)
+Mpg The car's miles per gallon (as a double)
+Include two overloaded constructors. One accepts parameters for the model (string) and then miles per gallon (double); the other accepts a model and sets the miles per gallon to 20.
+
+Overload the ++ operator that increases the miles per gallon value by 1. 
+The CarDemo application creates at least one Car using each constructor and displays the Car values both before and after incrementation.
+*/
+
+using System;
+using static System.Console;
+using System.Globalization;
+class Car
+{
+    // Properties
+    public string Model { get; set; }
+    public double Mpg { get; set; }
+
+    // Constructor 1: Accepts model and mpg
+    public Car(string model, double mpg)
+    {
+        Model = model;
+        Mpg = mpg;
+    }
+
+    // Constructor 2: Accepts model and sets mpg to 20
+    public Car(string model) : this(model, 20) { }
+
+    // Overloaded ++ operator to increase mpg by 1
+    public static Car operator ++(Car car)
+    {
+        car.Mpg += 1;
+        return car;
+    }
+}
+
+class CarDemo
+{
+    static void Main()
+    {
+        // Create two Car objects using both constructors
+        Car car1 = new Car("Toyota", 30);
+        Car car2 = new Car("Honda");
+
+        // Display car values before incrementation
+        WriteLine("Before increment:");
+        WriteLine("{0}: Model = {1}, Mpg = {2}", car1.Model, car1.Model, car1.Mpg);
+        WriteLine("{0}: Model = {1}, Mpg = {2}", car2.Model, car2.Model, car2.Mpg);
+
+        // Increment car mpg
+        car1++;
+        car2++;
+
+        // Display car values after incrementation
+        WriteLine("\nAfter increment:");
+        WriteLine("{0}: Model = {1}, Mpg = {2}", car1.Model, car1.Model, car1.Mpg);
+        WriteLine("{0}: Model = {1}, Mpg = {2}", car2.Model, car2.Model, car2.Mpg);
+    }
+}
