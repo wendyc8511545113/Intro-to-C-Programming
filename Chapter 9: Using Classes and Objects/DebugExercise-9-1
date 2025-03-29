@@ -1,0 +1,147 @@
+Debug the code:
+// Creates a HomeworkAssignment class
+// instantiates two objects
+// and prompts the user for information about two courses
+using static System.Console;
+class DebugNine1
+{
+   static void Main()
+   {
+      HomeworkAssignment course1 = new HomeworkAssignment();
+      HomeworkAssignment course2 = new HomeworkAssignment();
+      string entryString;
+      int exercises;
+
+      // Get info for first class
+      Write("What class do you have homework for? ");
+      entry = ReadLine();
+      course1.className = entryString;
+      Write("How many exercises must you complete? ");
+      entryString = ReadLine(entry);
+      int.TryParse(entryString, exercises);
+      exercises = course1.NumberOfExercises;
+      
+      // Get info for another class
+      Write("What class do you have homework for? ");
+      entryString = ReadLine();
+      course2.className = entrystring;
+      Write("How many exercises must you complete? ");
+      entryString = ReadLine();
+      char.TryParse(entryString, exercises);
+      course2.NumberOfExercises = exercises;
+
+      WriteLine("You have {0} minutes of homework for {1}",
+            course1.timeToComplete, course1.ClassName);      
+      WriteLine("and {0} more minutes for {1}",
+            course2.timeToComplete,course2.ClassName);
+   }
+}
+class HomeworkAssignment
+{
+   private int numberOfExercises;
+   private int timeToComplete;
+   // 10 minutes to complete each exercise
+   private const int TIME_PER_EXERCISE = 10;
+   public ClassName {get; set};
+   public int NumberOfExercises
+   {
+      get
+      {
+         return numberOfexercises;
+      }
+      set
+      {
+         numberOfExercises = number;
+         CalcCompletionTime();
+      }
+   }
+   public double TimeToComplete
+   {
+      get
+      {
+         return timeToComplete;
+      }
+   }
+   private void CalcCompletionTime()
+   {
+      timeToComplete = numberOfExercises * TIME_PER_EXERCISE;      
+   }
+}
+Errors shown when code run:
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(44,21): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(44,25): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(44,30): error CS1519: Invalid token '}' in class, record, struct, or interface member declaration [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(64,4): error CS8803: Top-level statements must precede namespace and type declarations. [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(64,4): error CS0106: The modifier 'private' is not valid for this item [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.cs(68,1): error CS1022: Type or namespace definition, or end-of-file expected [/workspaces/9780357429235_farrell-c-sharp-199c98cb-d048-48d6-b893-012de899aa1a/chapter9/de01/student/DebugNine1.csproj]
+
+Corrected Code:
+using static System.Console;
+
+class DebugNine1
+{
+   static void Main()
+   {
+      HomeworkAssignment course1 = new HomeworkAssignment();
+      HomeworkAssignment course2 = new HomeworkAssignment();
+      string entryString;
+      int exercises;
+
+      // Get info for first class
+      Write("What class do you have homework for? ");
+      entryString = ReadLine();
+      course1.ClassName = entryString;
+      Write("How many exercises must you complete? ");
+      entryString = ReadLine();
+      int.TryParse(entryString, out exercises);
+      course1.NumberOfExercises = exercises;
+      
+      // Get info for another class
+      Write("What class do you have homework for? ");
+      entryString = ReadLine();
+      course2.ClassName = entryString;
+      Write("How many exercises must you complete? ");
+      entryString = ReadLine();
+      int.TryParse(entryString, out exercises);
+      course2.NumberOfExercises = exercises;
+
+      WriteLine("You have {0} minutes of homework for {1}",
+            course1.TimeToComplete, course1.ClassName);      
+      WriteLine("and {0} more minutes for {1}",
+            course2.TimeToComplete, course2.ClassName);
+   }
+}
+
+class HomeworkAssignment
+{
+   private int numberOfExercises;
+   private int timeToComplete;
+   private const int TIME_PER_EXERCISE = 10;
+
+   public string ClassName { get; set; }  // Corrected the type
+   public int NumberOfExercises
+   {
+      get
+      {
+         return numberOfExercises;
+      }
+      set
+      {
+         numberOfExercises = value;
+         CalcCompletionTime();
+      }
+   }
+
+   public double TimeToComplete
+   {
+      get
+      {
+         return timeToComplete;
+      }
+   }
+
+   private void CalcCompletionTime()
+   {
+      timeToComplete = numberOfExercises * TIME_PER_EXERCISE;      
+   }
+}
