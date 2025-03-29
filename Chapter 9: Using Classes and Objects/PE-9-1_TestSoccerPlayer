@@ -11,33 +11,10 @@ using System;
 using static System.Console;
 using System.Globalization;
 
-// SoccerPlayer class
-class SoccerPlayer
+public class SoccerPlayer
 {
-    public string name;
-    public int jerseyNum;
-    public int goals;
-    public int assists;
-
-    public SoccerPlayer(string argName, int argJerseyNum, int argGoals, int argAssists)
-    {
-        name = argName;
-        jerseyNum = argJerseyNum;
-        goals = argGoals;
-        assists = argAssists;
-
-        Console.WriteLine("Storing data for " + name + "\n");
-    }
+    public string Name { get; set; }
+    public int JerseyNum { get; set; }
+    public int Goals { get; set; }
+    public int Assists { get; set; }
 }
-
-class TestSoccerPlayer
-{
-	static void Main()
-	{
-		SoccerPlayer player1 = new SoccerPlayer("Lionel Messi", 10, 30, 20);
-
-        Console.WriteLine(player1.name + " wears jersey number " + player1.jerseyNum + " with " + player1.goals + " goals and assists of " + player1.assists);
-        Console.ReadLine();
-    }
-}
-
